@@ -66,7 +66,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		geoip-dev \
 	&& curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
 	&& curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
-	&& curl -fSL https://github.com/joglomedia/ngx_cache_purge/archive/master.zip -o ngx_cache_purge-2.3.zip \
+	&& curl -fSL https://github.com/nginx-modules/ngx_cache_purge/archive/master.zip -o ngx_cache_purge.zip \
 	&& export GNUPGHOME="$(mktemp -d)" \
 	&& found=''; \
 	for server in \
@@ -84,8 +84,8 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& mkdir -p /usr/src \
 	&& tar -zxC /usr/src -f nginx.tar.gz \
 	&& rm nginx.tar.gz \
-	&& unzip ngx_cache_purge-2.3.zip -d /usr/src \
-	&& rm ngx_cache_purge-2.3.zip \
+	&& unzip ngx_cache_purge.zip -d /usr/src \
+	&& rm ngx_cache_purge.zip \
 	&& cd /usr/src/nginx-$NGINX_VERSION \
 	&& ./configure $CONFIG --with-debug \
 	&& make -j$(getconf _NPROCESSORS_ONLN) \
