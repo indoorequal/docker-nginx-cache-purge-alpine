@@ -15,5 +15,5 @@ jobs:
       - name: main
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-          docker build --build-arg ENABLED_MODULES="cache-purge" --tag ghcr.io/indoorequal/nginx-cache-purge .
+          docker build --tag ghcr.io/indoorequal/nginx-cache-purge .
           docker push ghcr.io/indoorequal/nginx-cache-purge
