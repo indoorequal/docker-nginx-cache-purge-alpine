@@ -28,6 +28,9 @@ RUN cd /opt \
 
 FROM nginx:$NGINX_VERSION-alpine
 
+RUN apk --update --no-cache add \
+        wget
+
 COPY --from=0 /opt/nginx/objs/ngx_http_cache_purge_module.so /usr/lib/nginx/modules
 
 RUN chmod -R 644 /usr/lib/nginx/modules/ngx_http_cache_purge_module.so \
